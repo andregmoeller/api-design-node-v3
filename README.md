@@ -4,3 +4,11 @@ This is a repository I created to accompany my viewing of [API design in Node wi
 ## Installation Instructions
 
 1. `yarn`
+1. `yarn dev`
+
+## Calling the API
+
+### Hello World Endpoints
+
+* `curl localhost:3000`
+* `curl -d 'foo' localhost:3000`
