@@ -2,6 +2,9 @@ import express from 'express'
 import { json, urlencoded } from 'body-parser'
 import morgan from 'morgan'
 import cors from 'cors'
+import itemRouter from './resources/item/item.router'
+import listRouter from './resources/list/list.router'
+import userRouter from './resources/user/user.router'
 
 export const app = express()
 
@@ -12,19 +15,9 @@ app.use(json())
 app.use(urlencoded({ extended: true }))
 app.use(morgan('dev'))
 
-const log = (req, res, next) => {
-  console.log('logging')
-  next()
-}
-
-app.get('/', log, (req, res) => {
-  res.send({ message: 'hello' })
-})
-
-app.post('/', (req, res) => {
-  console.log(req.body)
-  res.send({ message: 'ok' })
-})
+app.use('/api/item', itemRouter)
+app.use('/api/list', listRouter)
+app.use('/api/user', userRouter)
 
 export const start = () => {
   app.listen(3000, () => {
